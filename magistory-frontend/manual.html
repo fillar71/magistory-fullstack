@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Magistory — Manual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>📘 Panduan Penggunaan</h1>
+    </header>
+
+    <section class="step-card">
+      <ol>
+        <li>Tulis ide singkat di halaman <strong>Idea to Video</strong>.</li>
+        <li>Pilih konfigurasi (durasi, aspect ratio, style).</li>
+        <li>Tekan <strong>Generate</strong>. Sistem akan meminta narasi ke Gemini (atau mock jika offline) dan menyusun adegan.</li>
+        <li>Edit timeline: ubah urutan, ganti klip, trim, atur durasi klip, edit narasi.</li>
+        <li>Simpan project lalu tekan <strong>Render</strong> → pilih resolusi → Render Now (simulasi render pada frontend).</li>
+      </ol>
+      <p>Catatan: preview menggunakan media resolusi rendah. Untuk render final terhubung ke backend yang melakukan proses FFmpeg/TTS.</p>
+      <div class="action-row">
+        <a href="index.html" class="btn">⬅ Kembali</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="manual.js"></script>
+</body>
+</html>
