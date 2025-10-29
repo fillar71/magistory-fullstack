@@ -1,34 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Magistory Instant Video</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magistory - Cerita Instan AI</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <header class="header">
-      <h1>Magistory <small>— Video Instant Generator</small></h1>
-      <p class="tagline">Ubah ide Anda menjadi video instan hanya dengan satu klik 🎬</p>
-    </header>
+  <header>🌟 Magistory</header>
 
-    <section class="home-actions">
-      <a class="btn primary" href="idea.html">💡 Buat Video dari Ide</a>
-      <a class="btn" href="manual.html">📘 Panduan Penggunaan</a>
-    </section>
+  <main>
+    <div class="card">
+      <h2>Buat Cerita Instan dengan AI</h2>
+      <p>Ketik ide atau tema cerita, dan biarkan AI menulisnya untukmu.</p>
+      
+      <textarea id="prompt" placeholder="Contoh: petualangan anak kecil yang menemukan dunia ajaib"></textarea>
+      <button id="generateBtn">🚀 Buat Cerita</button>
 
-    <footer class="footer">
-      <small>Magistory — frontend demo (offline-capable)</small>
-    </footer>
+      <div id="result" class="card" style="display:none; margin-top:1rem;">
+        <h3>Hasil Cerita</h3>
+        <p id="storyText">⏳ Menunggu hasil...</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📘 Panduan</h3>
+      <p>Magistory membantu kamu membuat ide cerita dan kisah menarik hanya dengan satu kalimat.</p>
+      <button onclick="window.location.href='manual.html'">Lihat Panduan Lengkap</button>
+    </div>
   </main>
 
+  <footer>© 2025 Magistory — Dibuat dengan ❤️ di Acode Mobile</footer>
+
   <script>
-    // register service worker if supported (optional)
-    if('serviceWorker' in navigator){
-      navigator.serviceWorker?.register('sw.js').catch(()=>{/*ignore*/});
-    }
+    const API_BASE_URL = "https://magistory-fullstack-production.up.railway.app"; // Ganti dengan URL backend kamu
+
+    const generateBtn = document.getElementById("generateBtn");
+    const promptInput = document.getElementById("prompt");
+    const resultCard = document.getElementById("result");
+    const storyText = document.getElementById("storyText");
+
+    generateBtn.addEventListener("click", async () => {
+      const prompt = promptInput.value.trim();
+      if (!prompt) return alert("Tulis ide atau tema dulu!");
+
+      resultCard.style.display = "block";
+      storyText.textContent = "⏳ Membuat cerita dari AI...";
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/ai`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+
+        const data = await res.json();
+        storyText.textContent = data.story || "❌ Tidak ada hasil dari AI.";
+      } catch (err) {
+        storyText.textContent = "⚠️ Gagal mengambil hasil dari backend.";
+      }
+    });
   </script>
 </body>
 </html>
