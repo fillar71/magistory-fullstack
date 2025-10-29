@@ -1,1 +1,3 @@
-web: npm --prefix magistory-backend start
+"scripts": {
+  "start": "node server.js"
+}
