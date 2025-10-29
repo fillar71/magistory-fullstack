@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Magistory — Video Instant Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Magistory <small>— Video Instant Generator</small></h1>
+      <p class="tagline">Ubah ide Anda menjadi video instan hanya dengan satu klik 🎬</p>
+    </header>
+
+    <section class="home-actions">
+      <a class="btn primary" href="idea.html">💡 Buat Video dari Ide</a>
+      <a class="btn" href="manual.html">📘 Panduan Penggunaan</a>
+    </section>
+
+    <footer class="footer">
+      <small>Magistory — frontend demo (offline-capable)</small>
+    </footer>
+  </main>
+
+  <script>
+    // register service worker if supported (optional)
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker?.register('sw.js').catch(()=>{/*ignore*/});
+    }
+  </script>
+</body>
+</html>
