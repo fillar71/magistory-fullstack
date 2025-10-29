@@ -2,7 +2,7 @@
 // ------------------------------
 // CONFIG
 // ------------------------------
-const apiBase = ''; // leave empty for Acode/mobile local preview; set to backend URL in production (e.g. 'https://your-server.com/api')
+const apiBase = 'https://magistory-fullstack-production.up.railway.app/api'; // leave empty for Acode/mobile local preview; set to backend URL in production (e.g. 'https://your-server.com/api')
 const generateBtn = document.getElementById('generate-btn');
 const ideaTextEl = document.getElementById('idea-text');
 const statusEl = document.getElementById('generate-status');
