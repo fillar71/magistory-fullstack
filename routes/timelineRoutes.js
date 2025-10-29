@@ -1,9 +1,9 @@
-import express from "express";
-import { getTimeline, postTimeline } from "../controllers/timelineController.js";
+export const getTimeline = (req, res) => {
+  res.json({ message: "Get Timeline OK" });
+};
 
-const router = express.Router();
-
-router.get("/", getTimeline);
-router.post("/", postTimeline);
-
-export default router;
+export const postTimeline = (req, res) => {
+  const data = req.body;
+  // Simulasikan penyimpanan ke database atau memori
+  res.json({ message: "Timeline berhasil disimpan", data });
+};
