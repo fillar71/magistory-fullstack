@@ -1,3 +1,5 @@
+import { readdirSync } from "fs";
+console.log("Routes folder content:", readdirSync("./routes"));
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
