@@ -1,32 +1,25 @@
-import fetch from "node-fetch";
+// controllers/geminiController.js
 
-export const generateAIStory = async (req, res) => {
+import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export const generateIdea = async (req, res) => {
+  const { prompt } = req.body;
+
+  if (!prompt) {
+    return res.status(400).json({ error: "Prompt is required" });
+  }
+
   try {
-    const { prompt } = req.body;
-    if (!prompt) {
-      return res.status(400).json({ error: "Prompt is required" });
-    }
+    // Simulasi (karena di Railway tidak ada API key Gemini)
+    // Kamu bisa ubah ini dengan pemanggilan API Gemini nanti
+    const responseText = `✨ Ide berdasarkan prompt kamu: "${prompt}"\n1. Buat storyboard menarik\n2. Tambahkan musik lembut\n3. Gunakan gaya sinematik`;
 
-    const apiKey = process.env.GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateText?key=${apiKey}`;
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-      }),
-    });
-
-    const data = await response.json();
-
-    const aiText =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "AI tidak memberikan respon.";
-
-    res.json({ result: aiText });
+    res.json({ result: responseText });
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    res.status(500).json({ error: "Gagal memproses AI request" });
+    console.error("Gemini API Error:", error.message);
+    res.status(500).json({ error: "Failed to generate idea" });
   }
 };
