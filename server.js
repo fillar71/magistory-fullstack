@@ -1,14 +1,22 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import timelineRoutes from "./routes/timelineRoutes.js";
+import geminiRoutes from "./routes/geminiRoutes.js";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// route utama
+// Routes
 app.use("/api/timeline", timelineRoutes);
+app.use("/api/gemini", geminiRoutes);
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("Server running on port " + (process.env.PORT || 5000));
+app.get("/", (req, res) => {
+  res.send("🚀 Magistory Backend API is running...");
 });
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
