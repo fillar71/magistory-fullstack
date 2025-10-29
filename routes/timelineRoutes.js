@@ -6,4 +6,4 @@ const router = express.Router();
 router.get("/", getTimeline);
 router.post("/", postTimeline);
 
-export default router;  // ✅ tambahkan baris ini
+export default router;
