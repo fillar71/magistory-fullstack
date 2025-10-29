@@ -1,33 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Magistory — Manual</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panduan Magistory</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <header class="header">
-      <h1>📘 Panduan Penggunaan</h1>
-    </header>
+  <header>📘 Panduan Magistory</header>
 
-    <section class="step-card">
+  <main>
+    <div class="card">
+      <h2>Cara Menggunakan:</h2>
       <ol>
-        <li>Tulis ide singkat di halaman <strong>Idea to Video</strong>.</li>
-        <li>Pilih konfigurasi (durasi, aspect ratio, style).</li>
-        <li>Tekan <strong>Generate</strong>. Sistem akan meminta narasi ke Gemini (atau mock jika offline) dan menyusun adegan.</li>
-        <li>Edit timeline: ubah urutan, ganti klip, trim, atur durasi klip, edit narasi.</li>
-        <li>Simpan project lalu tekan <strong>Render</strong> → pilih resolusi → Render Now (simulasi render pada frontend).</li>
+        <li>Buka halaman utama.</li>
+        <li>Ketikkan ide atau tema cerita di kolom teks.</li>
+        <li>Tekan tombol <b>🚀 Buat Cerita</b>.</li>
+        <li>Tunggu sebentar — hasil dari AI akan muncul di bawahnya!</li>
       </ol>
-      <p>Catatan: preview menggunakan media resolusi rendah. Untuk render final terhubung ke backend yang melakukan proses FFmpeg/TTS.</p>
-      <div class="action-row">
-        <a href="index.html" class="btn">⬅ Kembali</a>
-      </div>
-    </section>
+    </div>
+
+    <div class="card">
+      <h3>Tips:</h3>
+      <ul>
+        <li>Gunakan deskripsi yang jelas agar hasil lebih bagus.</li>
+        <li>Contoh: “cerita misteri tentang detektif buta di kota futuristik”.</li>
+        <li>Jika hasilnya kosong, pastikan koneksi ke backend Railway aktif.</li>
+      </ul>
+    </div>
   </main>
 
-  <script src="manual.js"></script>
+  <footer><a href="index.html">← Kembali</a></footer>
 </body>
 </html>
