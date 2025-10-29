@@ -1,1 +1,1 @@
-web: cd magistory-backend && npm install && npm start
+web: npm start
