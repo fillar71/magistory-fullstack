@@ -1,3 +1,1 @@
-"scripts": {
-  "start": "node server.js"
-}
+web: cd magistory-backend && npm install && npm start
