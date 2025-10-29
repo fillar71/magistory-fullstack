@@ -1,15 +1,31 @@
-let timelines = [];
+// controllers/timelineController.js
+import fs from "fs";
 
-export const addTimelineEvent = (req, res) => {
-  const { year, event } = req.body;
-  if (!year || !event)
-    return res.status(400).json({ error: "Year and event are required" });
-
-  const newEvent = { id: Date.now(), year, event };
-  timelines.push(newEvent);
-  res.json(newEvent);
+// Contoh: ambil timeline (GET)
+export const getTimeline = (req, res) => {
+  try {
+    // Contoh data dummy — bisa diganti dengan database
+    const timelineData = JSON.parse(fs.readFileSync("timeline.json", "utf-8") || "[]");
+    res.json(timelineData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Gagal memuat timeline" });
+  }
 };
 
-export const getTimeline = (req, res) => {
-  res.json(timelines.sort((a, b) => a.year - b.year));
+// Contoh: simpan timeline (POST)
+export const postTimeline = (req, res) => {
+  try {
+    const newItem = req.body;
+    let timelineData = [];
+    if (fs.existsSync("timeline.json")) {
+      timelineData = JSON.parse(fs.readFileSync("timeline.json", "utf-8"));
+    }
+    timelineData.push(newItem);
+    fs.writeFileSync("timeline.json", JSON.stringify(timelineData, null, 2));
+    res.json({ message: "Timeline baru disimpan!", item: newItem });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Gagal menyimpan timeline" });
+  }
 };
