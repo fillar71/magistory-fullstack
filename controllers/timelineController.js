@@ -1,31 +1,26 @@
 // controllers/timelineController.js
-import fs from "fs";
+import Timeline from "../models/timelineModel.js";
 
-// Contoh: ambil timeline (GET)
-export const getTimeline = (req, res) => {
+// Ambil semua timeline
+export const getTimeline = async (req, res) => {
   try {
-    // Contoh data dummy — bisa diganti dengan database
-    const timelineData = JSON.parse(fs.readFileSync("timeline.json", "utf-8") || "[]");
-    res.json(timelineData);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Gagal memuat timeline" });
+    const timelines = await Timeline.find();
+    res.json(timelines);
+  } catch (error) {
+    console.error("Error fetching timeline:", error);
+    res.status(500).json({ message: "Gagal mengambil data timeline" });
   }
 };
 
-// Contoh: simpan timeline (POST)
-export const postTimeline = (req, res) => {
+// Tambah timeline baru
+export const postTimeline = async (req, res) => {
   try {
-    const newItem = req.body;
-    let timelineData = [];
-    if (fs.existsSync("timeline.json")) {
-      timelineData = JSON.parse(fs.readFileSync("timeline.json", "utf-8"));
-    }
-    timelineData.push(newItem);
-    fs.writeFileSync("timeline.json", JSON.stringify(timelineData, null, 2));
-    res.json({ message: "Timeline baru disimpan!", item: newItem });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Gagal menyimpan timeline" });
+    const { title, description, date } = req.body;
+    const newTimeline = new Timeline({ title, description, date });
+    await newTimeline.save();
+    res.status(201).json(newTimeline);
+  } catch (error) {
+    console.error("Error saving timeline:", error);
+    res.status(500).json({ message: "Gagal menyimpan data timeline" });
   }
 };
